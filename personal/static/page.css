@@ -1,51 +1,26 @@
 html,body {
     margin: 0px;
     padding: 0px;
-    overflow-x: hidden; 
+    overflow: hidden;
     scroll-behavior: smooth;
 }
 
-body {
-    overflow-y: hidden;
+i {
+    font-family: 'Font Awesome\ 5 Free';
+    font-weight: 900;
+    font-style: normal;
 }
 
 .wrapper {
-    height: 500vh;
-    width: 100vw;
+    height: 300vh;
+    width: 300vw;
     background-image: repeating-linear-gradient(red, yellow 100vh, green 100vh);
-}
-
-.navButton {
     position: relative;
-    top: calc(var(--index) * 100vh - (var(--index) * var(--itemHeight)));
-    background-color: aliceblue;
-    color: black;
-    border-radius: 10px;
-    height: var(--itemHeight);
-    width: 10vw;
-    z-index: 2;
-
-    text-align: center;
-    font-size: calc(var(--itemHeight) * .75);
-    line-height: var(--itemHeight);;
 }
 
-.navWrapper {
-    width: 10vw;
-    height: 100%;
-    padding-top: 0vh;
-    --itemHeight: 5vh;
-}
-
-.buttonAdj {
-    top: calc(var(--index) * var(--itemHeight));
-    position: fixed;
-}
-
-.pageWrapper {
+.page {
     position: absolute;
     height: 100vh;
-    top: calc(100vh * var(--index));
     width: 100vw;
     background-color: white;
     z-index: 1;
@@ -53,22 +28,62 @@ body {
     align-items: center;
 }
 
-#p1 {
-    background-color: #212124;
+.navButton {
+    position: absolute;
+    color: gainsboro;
+    font-size: 5vw;
+    height: 5vw;
+    width: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
 
-#p2 {
+#buttonUp, #buttonDown{
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#buttonDown {
+    bottom: 0;
+}
+
+#buttonRight, #buttonLeft {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#buttonRight {
+    right: 0;
+}
+
+#home {
+    background-color: #212124;
+    top: 100vh;
+    left: 100vw;
+}
+
+#up {
     background-color: #292a2d;
+    top: 0;
+    left: 100vw;
 }
 
-#p3 {
-    background-color: #212124;
-}
-
-#p4 {
+#down {
     background-color: #292a2d;
+    top: 200vh;
+    left: 100vw;
 }
 
-#p5 {
-    background-color: #212124;
+#left {
+    background-color: #292a2d;
+    top: 100vh;
+    left: 0;
+}
+
+#right {
+    background-color: #292a2d;
+    top: 100vh;
+    left: 200vw;
 }

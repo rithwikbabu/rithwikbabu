@@ -4,37 +4,59 @@
         <meta charset="utf-8" />
         <title>Rithwik Babu</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='page.css')}}" />
-        <script>history.scrollRestoration = "manual"</script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     </head>
 
     <body>
         <div class="wrapper">
-            <div class="navWrapper">
-                <div class="navButton" style="--index: 0;" id="1" onclick="scrl(1)">1</div>
-                <div class="navButton" style="--index: 1;" id="2" onclick="scrl(2)">2</div>
-                <div class="navButton" style="--index: 2;" id="3" onclick="scrl(3)">3</div>
-                <div class="navButton" style="--index: 3;" id="4" onclick="scrl(4)">4</div>
-                <div class="navButton" style="--index: 4;" id="5" onclick="scrl(5)">5</div>
+            <div class="page" id="home">
+                <div class="navButton" id="buttonUp" onclick="move('#up')">
+                    <i class="buttonUp">&#xf106;</i>
+                </div>
+                <div class="navButton" id="buttonDown" onclick="move('#down')">
+                    <i class="buttonDown">&#xf107;</i>
+                </div>
+                <div class="navButton" id="buttonLeft" onclick="move('#left')">
+                    <i class="buttonLeft">&#xf104;</i>
+                </div>
+                <div class="navButton" id="buttonRight" onclick="move('#right')">
+                    <i class="buttonRight">&#xf105;</i>
+                </div>
             </div>
-            <div class="pageWrapper" style="--index: 0;" id="p1">1</div>
-            <div class="pageWrapper" style="--index: 1;" id="p2">2</div>
-            <div class="pageWrapper" style="--index: 2;" id="p3">3</div>
-            <div class="pageWrapper" style="--index: 3;" id="p4">4</div>
-            <div class="pageWrapper" style="--index: 4;" id="p5">5</div>
+            <div class="page" id="up">
+                <div class="navButton" id="buttonDown" onclick="move('#home')">
+                    <i class="buttonUp">&#xf107;</i>
+                </div>
+            </div>
+            <div class="page" id="down">
+                <div class="navButton" id="buttonUp" onclick="move('#home')">
+                    <i class="buttonUp">&#xf106;</i>
+                </div>
+            </div>
+            <div class="page" id="left">
+                <div class="navButton" id="buttonRight" onclick="move('#home')">
+                    <i class="buttonLeft">&#xf105;</i>
+                </div>
+            </div>
+            <div class="page" id="right">
+                <div class="navButton" id="buttonLeft" onclick="move('#home')">
+                    <i class="buttonRight">&#xf104;</i>
+                </div>
+            </div>
         </div>
 
         <script>
-            function scrl(id) {
-                var height = document.documentElement.scrollHeight / 5;
-                window.scroll(0, (height - height/10) * (id-1));
+            location.href="#home"
+            function move(id) {
+                location.href=id;
             }
 
             var itemHeight = document.getElementById("1").offsetHeight;
-            var p1 = document.getElementById("1").getBoundingClientRect().top - itemHeight * 0;
-            var p2 = document.getElementById("2").getBoundingClientRect().top - itemHeight * 1;
-            var p3 = document.getElementById("3").getBoundingClientRect().top - itemHeight * 2;
-            var p4 = document.getElementById("4").getBoundingClientRect().top - itemHeight * 3;
-            var p5 = document.getElementById("5").getBoundingClientRect().top - itemHeight * 4;
+            // var p1 = document.getElementById("1").getBoundingClientRect().top - itemHeight * 0;
+            // var p2 = document.getElementById("2").getBoundingClientRect().top - itemHeight * 1;
+            // var p3 = document.getElementById("3").getBoundingClientRect().top - itemHeight * 2;
+            // var p4 = document.getElementById("4").getBoundingClientRect().top - itemHeight * 3;
+            // var p5 = document.getElementById("5").getBoundingClientRect().top - itemHeight * 4;
 
             window.addEventListener("scroll", function(event){
                 var scroll = this.scrollY;
