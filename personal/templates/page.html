@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Rithwik Babu</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='page.css')}}" />
+        <script>history.scrollRestoration = "manual"</script>
+    </head>
+
+    <body>
+        <div class="wrapper">
+            <div class="navWrapper">
+                <div class="navButton" style="--index: 0;" id="1" onclick="scrl(1)">1</div>
+                <div class="navButton" style="--index: 1;" id="2" onclick="scrl(2)">2</div>
+                <div class="navButton" style="--index: 2;" id="3" onclick="scrl(3)">3</div>
+                <div class="navButton" style="--index: 3;" id="4" onclick="scrl(4)">4</div>
+                <div class="navButton" style="--index: 4;" id="5" onclick="scrl(5)">5</div>
+            </div>
+            <div class="pageWrapper" style="--index: 0;" id="p1">1</div>
+            <div class="pageWrapper" style="--index: 1;" id="p2">2</div>
+            <div class="pageWrapper" style="--index: 2;" id="p3">3</div>
+            <div class="pageWrapper" style="--index: 3;" id="p4">4</div>
+            <div class="pageWrapper" style="--index: 4;" id="p5">5</div>
+        </div>
+
+        <script>
+            function scrl(id) {
+                var height = document.documentElement.scrollHeight / 5;
+                window.scroll(0, (height - height/10) * (id-1));
+            }
+
+            var itemHeight = document.getElementById("1").offsetHeight;
+            var p1 = document.getElementById("1").getBoundingClientRect().top - itemHeight * 0;
+            var p2 = document.getElementById("2").getBoundingClientRect().top - itemHeight * 1;
+            var p3 = document.getElementById("3").getBoundingClientRect().top - itemHeight * 2;
+            var p4 = document.getElementById("4").getBoundingClientRect().top - itemHeight * 3;
+            var p5 = document.getElementById("5").getBoundingClientRect().top - itemHeight * 4;
+
+            window.addEventListener("scroll", function(event){
+                var scroll = this.scrollY;
+                var height = document.documentElement.scrollHeight;
+
+                if (scroll < itemHeight) {
+                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = "0px";
+                }
+                if (scroll > p1) {
+                    document.getElementById("1").classList.add('buttonAdj');
+                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = itemHeight;
+                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = itemHeight + "px";
+                    console.log(document.getElementsByClassName("navWrapper")[0].style.paddingTop);
+                } else {
+                    document.getElementById("1").classList.remove('buttonAdj');
+                }
+                if (scroll > p2) {
+                    document.getElementById("2").classList.add('buttonAdj');
+                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = 2*itemHeight + "px";
+                } else {
+                    document.getElementById("2").classList.remove('buttonAdj');
+                }
+                if (scroll > p3) {
+                    document.getElementById("3").classList.add('buttonAdj');
+                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = 3*itemHeight + "px";
+                } else {
+                    document.getElementById("3").classList.remove('buttonAdj');
+                }
+                if (scroll > p4) {
+                    document.getElementById("4").classList.add('buttonAdj');
+                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = 4*itemHeight + "px";
+                } else {
+                    document.getElementById("4").classList.remove('buttonAdj');
+                }
+                if (scroll > p5) {
+                    document.getElementById("5").classList.add('buttonAdj');
+                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = 5*itemHeight + "px";
+                } else {
+                    document.getElementById("5").classList.remove('buttonAdj');
+                }
+            })
+        </script>
+    </body>
+</html>
