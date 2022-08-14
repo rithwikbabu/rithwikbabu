@@ -1,3 +1,8 @@
+@font-face{
+    font-family: gidole;
+    src: url('../static/gidole.regular.otf');
+}
+
 html,body {
     margin: 0px;
     padding: 0px;
@@ -14,7 +19,7 @@ i {
 .wrapper {
     height: 300vh;
     width: 300vw;
-    background-image: repeating-linear-gradient(red, yellow 100vh, green 100vh);
+    background-color: #212124;
     position: relative;
 }
 
@@ -31,18 +36,34 @@ i {
 .navButton {
     position: absolute;
     color: gainsboro;
-    font-size: 5vw;
-    height: 5vw;
-    width: 5vw;
+    font-size: 3vw;
+    height: 3vw;
+    width: 3vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    vertical-align: middle;
+    line-height: normal;
+}
 
+.navButton small {
+    position: absolute;
+    font-family: "gidole";
+    font-size: 2vh;
+}
+
+#buttonUp small {
+    margin-top: 6vh;
+}
+
+#buttonDown small {
+    margin-bottom: 6vh;
 }
 
 #buttonUp, #buttonDown{
     left: 50%;
     transform: translateX(-50%);
+    width: 100vw;
 }
 
 #buttonDown {
@@ -52,6 +73,7 @@ i {
 #buttonRight, #buttonLeft {
     top: 50%;
     transform: translateY(-50%);
+    height: 100vh;
 }
 
 #buttonRight {
@@ -86,4 +108,44 @@ i {
     background-color: #292a2d;
     top: 100vh;
     left: 200vw;
+}
+
+.imgdiv {
+    margin-top: 25vh;
+    margin-left: 25vw;
+    --lr: 0px;
+    --tb: 0px;
+    box-shadow: inset 0px 0px 15px 15px rgba(0, 0, 0, .9);
+    height: fit-content;
+    width: fit-content;
+}
+
+.imgdiv img {
+    position: relative; 
+    z-index: -1;
+}
+
+.map {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 5vh;
+    margin-left: 5vh;
+    z-index: 10;
+
+    display: grid;
+    grid-gap: 1vh;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+}
+
+.map > .mapItem {
+    background-color: #646464;
+    display: grid;
+    place-items: center;
+    border-radius: 2.5px;
+}
+
+.mapItem {
+    background-color: white;
 }

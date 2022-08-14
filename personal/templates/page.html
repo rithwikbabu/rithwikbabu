@@ -9,12 +9,25 @@
 
     <body>
         <div class="wrapper">
+            <div class="map" id="map">
+                <div class="mappa"></div>
+                <div class="mapItem mappa" id="mapUp" onclick="move('#up')"></div>
+                <div class="mappa"></div>
+                <div class="mapItem mappa" id="mapLeft" onclick="move('#left')"></div>
+                <div class="mapItem mappa" id="mapHome" onclick="move('#home')"></div>
+                <div class="mapItem mappa" id="mapRight" onclick="move('#right')"></div>
+                <div class="mappa"></div>
+                <div class="mapItem mappa" id="mapDown" onclick="move('#down')"></div>
+                <div class="mappa"></div>
+            </div>
             <div class="page" id="home">
                 <div class="navButton" id="buttonUp" onclick="move('#up')">
                     <i class="buttonUp">&#xf106;</i>
+                    <small>Projects</small>
                 </div>
                 <div class="navButton" id="buttonDown" onclick="move('#down')">
                     <i class="buttonDown">&#xf107;</i>
+                    <small>Contact</small>
                 </div>
                 <div class="navButton" id="buttonLeft" onclick="move('#left')">
                     <i class="buttonLeft">&#xf104;</i>
@@ -47,57 +60,51 @@
 
         <script>
             location.href="#home"
+            document.getElementById("mapHome").style.setProperty("background-color", "gainsboro");
+
             function move(id) {
+                switch(location.href.slice(location.href.indexOf("#"))) {
+                    case "#up":
+                        document.getElementById("mapUp").style.setProperty("background-color", "#646464");
+                        break;
+                    case "#down":
+                        document.getElementById("mapDown").style.setProperty("background-color", "#646464");
+                        break;
+                    case "#left":
+                        document.getElementById("mapLeft").style.setProperty("background-color", "#646464");
+                        break;
+                    case "#right":
+                        document.getElementById("mapRight").style.setProperty("background-color", "#646464");
+                        break;
+                    default:
+                        document.getElementById("mapHome").style.setProperty("background-color", "#646464");
+                }
                 location.href=id;
+                switch(id) {
+                    case "#up":
+                        document.getElementById("mapUp").style.setProperty("background-color", "gainsboro");
+                        break;
+                    case "#down":
+                        document.getElementById("mapDown").style.setProperty("background-color", "gainsboro");
+                        break;
+                    case "#left":
+                        document.getElementById("mapLeft").style.setProperty("background-color", "gainsboro");
+                        break;
+                    case "#right":
+                        document.getElementById("mapRight").style.setProperty("background-color", "gainsboro");
+                        break;
+                    default:
+                        document.getElementById("mapHome").style.setProperty("background-color", "gainsboro");
+                }
             }
 
-            var itemHeight = document.getElementById("1").offsetHeight;
-            // var p1 = document.getElementById("1").getBoundingClientRect().top - itemHeight * 0;
-            // var p2 = document.getElementById("2").getBoundingClientRect().top - itemHeight * 1;
-            // var p3 = document.getElementById("3").getBoundingClientRect().top - itemHeight * 2;
-            // var p4 = document.getElementById("4").getBoundingClientRect().top - itemHeight * 3;
-            // var p5 = document.getElementById("5").getBoundingClientRect().top - itemHeight * 4;
-
-            window.addEventListener("scroll", function(event){
-                var scroll = this.scrollY;
-                var height = document.documentElement.scrollHeight;
-
-                if (scroll < itemHeight) {
-                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = "0px";
-                }
-                if (scroll > p1) {
-                    document.getElementById("1").classList.add('buttonAdj');
-                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = itemHeight;
-                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = itemHeight + "px";
-                    console.log(document.getElementsByClassName("navWrapper")[0].style.paddingTop);
-                } else {
-                    document.getElementById("1").classList.remove('buttonAdj');
-                }
-                if (scroll > p2) {
-                    document.getElementById("2").classList.add('buttonAdj');
-                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = 2*itemHeight + "px";
-                } else {
-                    document.getElementById("2").classList.remove('buttonAdj');
-                }
-                if (scroll > p3) {
-                    document.getElementById("3").classList.add('buttonAdj');
-                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = 3*itemHeight + "px";
-                } else {
-                    document.getElementById("3").classList.remove('buttonAdj');
-                }
-                if (scroll > p4) {
-                    document.getElementById("4").classList.add('buttonAdj');
-                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = 4*itemHeight + "px";
-                } else {
-                    document.getElementById("4").classList.remove('buttonAdj');
-                }
-                if (scroll > p5) {
-                    document.getElementById("5").classList.add('buttonAdj');
-                    document.getElementsByClassName("navWrapper")[0].style.paddingTop = 5*itemHeight + "px";
-                } else {
-                    document.getElementById("5").classList.remove('buttonAdj');
-                }
-            })
+            var ratio = window.innerWidth / window.innerHeight;
+            var size = 5;
+            var mapItems = document.getElementsByClassName("mappa");
+            for (let i = 0; i < mapItems.length; i++) {
+                mapItems[i].style.setProperty("width", (size * ratio) + "vh");
+                mapItems[i].style.setProperty("height", size + "vh");
+            }
         </script>
     </body>
 </html>
