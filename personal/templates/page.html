@@ -31,6 +31,7 @@
                 </div>
                 <div class="navButton" id="buttonLeft" onclick="move('#left')">
                     <i class="buttonLeft">&#xf104;</i>
+                    <i class="i2">&#xf121;</i>
                 </div>
                 <div class="navButton" id="buttonRight" onclick="move('#right')">
                     <i class="buttonRight">&#xf105;</i>
@@ -63,6 +64,8 @@
             document.getElementById("mapHome").style.setProperty("background-color", "gainsboro");
 
             function move(id) {
+                document.getElementsByTagName("html")[0].style.scrollBehavior = "smooth";
+                document.getElementsByTagName("body")[0].style.scrollBehavior = "smooth";
                 switch(location.href.slice(location.href.indexOf("#"))) {
                     case "#up":
                         document.getElementById("mapUp").style.setProperty("background-color", "#646464");
@@ -98,13 +101,24 @@
                 }
             }
 
-            var ratio = window.innerWidth / window.innerHeight;
-            var size = 5;
-            var mapItems = document.getElementsByClassName("mappa");
-            for (let i = 0; i < mapItems.length; i++) {
-                mapItems[i].style.setProperty("width", (size * ratio) + "vh");
-                mapItems[i].style.setProperty("height", size + "vh");
+            function setMapSize() {
+                var ratio = window.innerWidth / window.innerHeight;
+                var size = 5;
+                var mapItems = document.getElementsByClassName("mappa");
+                for (let i = 0; i < mapItems.length; i++) {
+                    mapItems[i].style.setProperty("width", (size * ratio) + "vh");
+                    mapItems[i].style.setProperty("height", size + "vh");
+                }
             }
+            
+
+            window.addEventListener("resize", function(event) {
+                console.log("WHATTT");
+                document.getElementsByTagName("html")[0].style.scrollBehavior = "auto";
+                document.getElementsByTagName("body")[0].style.scrollBehavior = "auto";
+                location.href=location.href;
+                setMapSize();
+            })
         </script>
     </body>
 </html>
