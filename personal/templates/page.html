@@ -7,7 +7,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     </head>
 
-    <body>
+    <body id="desktop">
         <div class="wrapper">
             <div class="map" id="map">
                 <div class="mappa"></div>
@@ -22,19 +22,27 @@
             </div>
             <div class="page" id="home">
                 <div class="navButton" id="buttonUp" onclick="move('#up')">
-                    <i class="buttonUp">&#xf106;</i>
-                    <small>Projects</small>
+                    <i class="buttonUp toRainbow">&#xf106;</i>
+                    <small class="toRainbow">Projects</small>
                 </div>
                 <div class="navButton" id="buttonDown" onclick="move('#down')">
-                    <i class="buttonDown">&#xf107;</i>
-                    <small>Contact</small>
+                    <i class="buttonDown toRainbow">&#xf107;</i>
+                    <small class="toRainbow">Contact</small>
                 </div>
                 <div class="navButton" id="buttonLeft" onclick="move('#left')">
-                    <i class="buttonLeft">&#xf104;</i>
-                    <i class="i2">&#xf121;</i>
+                    <i class="buttonLeft toRainbow">&#xf104;</i>
+                    <i class="i2 toRainbow">&#xf121;</i>
                 </div>
                 <div class="navButton" id="buttonRight" onclick="move('#right')">
-                    <i class="buttonRight">&#xf105;</i>
+                    <i class="buttonRight toRainbow">&#xf105;</i>
+                </div>
+                <div class="nameContainer toRainbow" onclick="animateDes()" onmouseover="makeRainbow()" onmouseout="takeRainbow()">
+                    RITHWIK BABU
+                </div>
+                <div class="designContainer">
+                    <div class="expandI">
+                        RITHW<span class="anitext rainbowText">I</span>K BABU
+                    </div>
                 </div>
             </div>
             <div class="page" id="up">
@@ -61,6 +69,7 @@
 
         <script>
             location.href="#home"
+            setMapSize();
             document.getElementById("mapHome").style.setProperty("background-color", "gainsboro");
 
             function move(id) {
@@ -119,6 +128,49 @@
                 location.href=location.href;
                 setMapSize();
             })
+
+            function foldImage() {
+                document.getElementsByClassName("tr-img")[0].setAttribute("width", "0px");
+            }
+
+            image = document.getElementsByClassName("tr-img")[0];
+
+            var transform = {
+                scale: 1
+            };
+
+            function scaleImage(val){
+                transform.scale = val;
+                applyStyle()
+            }   
+
+            function applyStyle() {
+                image.style.transform = `scaleX(${transform.scale})`;
+            }
+
+            function makeRainbow() {
+                items = document.getElementsByClassName("toRainbow");
+                for (let i = 0; i < items.length; i++) {
+                    items[i].classList.add("rainbowText");
+                }
+            }
+
+            function takeRainbow() {
+                items = document.getElementsByClassName("toRainbow");
+                for (let i = 0; i < items.length; i++) {
+                    items[i].classList.remove("rainbowText");
+                }
+            }
+
+            function animateDes() {
+                items = document.getElementsByClassName("toRainbow");
+                for (let i = 0; i < items.length; i++) {
+                    items[i].classList.add("persistRainbow");
+                }
+                line = document.getElementsByClassName("anitext")[0];
+                line.classList.add("atp1");
+            }
+            
         </script>
     </body>
 </html>
