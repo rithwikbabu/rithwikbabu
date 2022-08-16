@@ -211,40 +211,12 @@
         animation: textAnimate 5s linear infinite alternate;
     }
 
-    .designContainer {
-
-    }
-
-    .expandI {
-        color: transparent;
-        z-index: -1;
-    }
-
-    .anitext {
-        display: inline-block;
-        font-family: "gidole";
-        color: gainsboro;
-        transform: scaleY(1) translateY(0);
-        padding-left: 0vw;
-        /* transition-duration: 2s; */
-        animation: textAnimate 5s linear infinite alternate;
-        line-height: 2.67vh;
-    }
-
-    .atp1 {
-        animation: a1 2s linear 1 forwards, textAnimate 1s linear infinite alternate;
-    }
-
-    @keyframes a1 {
-        0%   {
-            transform: scaleY(1) translateY(0px);
-        }
-        50%  {transform: scaleY(2) translateY(10vh);}
-        100% {
-            transform: scaleY(3) translateY(20vh);
+    @keyframes grow {
+        to {
+            transform: scale(20);
         }
     }
-      
+
     @keyframes textAnimate {
     from {
         filter: hue-rotate(0deg);
