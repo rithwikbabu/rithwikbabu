@@ -1,1 +1,1 @@
-[Personal Website](https://www.google.com "Rithwik Babu's personal website")
+[Personal Website](https://rithwikbabu.com/ "Rithwik Babu's personal website")
