@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Rithwik Babu</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='page.css')}}" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" rel="stylesheet">
     </head>
@@ -31,10 +32,11 @@
                 </div>
                 <div class="navButton" id="buttonLeft" onclick="move('#left')">
                     <i class="buttonLeft toRainbow">&#xf104;</i>
-                    <i class="i2 toRainbow">&#xf121;</i>
+                    <small class="toRainbow" style="margin-left: 7vw;">Experience</small>
                 </div>
                 <div class="navButton" id="buttonRight" onclick="move('#right')">
                     <i class="buttonRight toRainbow">&#xf105;</i>
+                    <small class="toRainbow" style="margin-right: 6.5vw;">Statistics</small>
                 </div>
                 <div class="nameContainer toRainbow" onclick="animateDes()" onmouseover="makeRainbow()" onmouseout="takeRainbow()">
                     RITHWIK BABU
@@ -67,7 +69,14 @@
             setMapSize();
             document.getElementById("mapHome").style.setProperty("background-color", "gainsboro");
 
+            var moving = false;
+
             function move(id) {
+                if (moving) {
+                    return;
+                }
+                moving = true;
+
                 document.getElementsByTagName("html")[0].style.scrollBehavior = "smooth";
                 document.getElementsByTagName("body")[0].style.scrollBehavior = "smooth";
                 switch(location.href.slice(location.href.indexOf("#"))) {
@@ -103,6 +112,12 @@
                     default:
                         document.getElementById("mapHome").style.setProperty("background-color", "gainsboro");
                 }
+
+                setTimeout(function() {
+                    document.getElementsByTagName("html")[0].style.scrollBehavior = "";
+                    document.getElementsByTagName("body")[0].style.scrollBehavior = "";
+                    moving = false;
+                }, 500); // Animation duration
             }
 
             function setMapSize() {
@@ -164,6 +179,50 @@
                 }
             }
             
+            $(document).keydown(function(e) {
+                if (moving) {
+                    return;
+                }
+
+                var currentHash = window.location.hash;
+
+                switch (e.which) {
+                    case 37: // left
+                        if (currentHash == "#home") {
+                            move('#left');
+                        } else if (currentHash == "#right") {
+                            move('#home');
+                        }
+                        break;
+            
+                    case 38: // up
+                        if (currentHash == "#home") {
+                            move('#up');
+                        } else if (currentHash == "#down") {
+                            move('#home');
+                        }
+                        break;
+            
+                    case 39: // right
+                        if (currentHash == "#home") {
+                            move('#right');
+                        } else if (currentHash == "#left") {
+                            move('#home');
+                        }
+                        break;
+            
+                    case 40: // down
+                        if (currentHash == "#home") {
+                            move('#down');
+                        } else if (currentHash == "#up") {
+                            move('#home');
+                        }
+                        break;
+            
+                    default: return; // exit this handler for other keys
+                }
+                e.preventDefault(); // prevent the default action (scroll / move caret)
+            });
         </script>
     </body>
 </html>
